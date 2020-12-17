@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Reverse Proxy Auth Widget
  * Description: The plugin authenticates the user in Wordpress and set him/her role via HTTP header fields.
- * Version: 0.1.0
+ * Version: 1.1.0
  * Author: Datawiza
  * Author URI: https://www.datawiza.com/
  * License: MPL-2.0 License 
