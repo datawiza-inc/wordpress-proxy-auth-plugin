@@ -12,8 +12,9 @@
  * Domain Path: /languages
  */
 
-/* logout uri is: /ab-logout.
- * It will be called when logout button is clicked in WordPress.
+
+/* logout uri is: /ab-logout. 
+ * This fuction is called when the logout button is clicked in WordPress. 
  */
 function logUserOutOfProxy()
 {
