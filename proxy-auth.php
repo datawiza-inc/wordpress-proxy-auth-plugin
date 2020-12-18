@@ -12,7 +12,10 @@
  * Domain Path: /languages
  */
 
-function logUserOutOfAccessBroker()
+/* logout uri is: /ab-logout.
+ * It will be called when logout button is clicked in WordPress.
+ */
+function logUserOutOfProxy()
 {
     wp_clear_auth_cookie();
     wp_redirect('/ab-logout');
@@ -57,7 +60,7 @@ add_action('init', function () {
 add_action('login_init', function () {
     if ($_SERVER['HTTP_X_USER']) {
         if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-            logUserOutOfAccessBroker();
+            logUserOutOfProxy();
         }
     }
 });
