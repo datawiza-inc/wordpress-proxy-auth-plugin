@@ -6,8 +6,8 @@
  * Version: 1.1.0
  * Author: Datawiza
  * Author URI: https://www.datawiza.com/
- * License: MPL-2.0 License 
- * License URI: https://www.mozilla.org/en-US/MPL/2.0/
+ * License: GPL-2.0
+ * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
  * Text Domain: datawiza
  * Domain Path: /languages
  */
