@@ -1,4 +1,4 @@
-# WordPress Proxy Auth plugin
+# WordPress Proxy Auth Plugin
 ## Introduction
 The WordPress Proxy Auth plugin helps developers/DevOps/admins easily implement authentication and authorization for WordPress by using the HTTP header fields provided by a reverse proxy.
 
