@@ -21,7 +21,7 @@ Note that the plugin requires a reverse proxy sitting in front of the WordPress 
 }
 ```
 
-## Plugin Configuration in Wordpress
+## Plugin config in Wordpress
 
 In `Setting` -> `Datawiza Proxy Auth`, you need to input a private secret which is used as a Cryptography Key. Such secret is shared among the plugin and the reverse proxy which is responsible for passing the JWT to the plugin. The Signing Algorithm for the JWT is `HS256`.
 
@@ -34,26 +34,14 @@ In `Setting` -> `Datawiza Proxy Auth`, you need to input a private secret which 
 If you are using openresty/lua-nginx-module, here is the [code sample](https://github.com/SkyLothar/lua-resty-jwt#synopsis) to generate the JWT token required by the plugin.  
 And [here](https://en.wikipedia.org/wiki/JSON_Web_Token#Implementations) is about other languages and frameworks' implementations.
 
-## Step by step instruction to use the plugin with the Datawiza Access-Broker
+## Step by step instruction to use the plugin with the Datawiza Access Broker
 
 The plugin works with any reverse proxy as long as the proxy can pass the correct JWT in the HTTP header to the plugin. Here is the step by step instruction if you are using Datawiza Access Broker.
 
-Signup or login in [Datawiza Management Console](https://console.datawiza.com)
+Signup or login in [Datawiza Management Console](https://console.datawiza.com). Follow the [docs](https://docs.datawiza.com) to create a deployment, IdP, and an application.
 
-Create a deployment and a application and set the public domain as https://localhost:9772 and upstream servers as http://wordpress
+Step 1. When creating the deployment, take a note of the provisioning key and secret.
 
-Create a pair of provisioning key and keep a note of it.
+Step 2. Under Attributes tab and add add a new attribute: For Okta, `Field` is "email", `Expected` is "email", `Type` is "Header".
 
-Under Attributes tab and create a new attribute: For Okta, `Field` is "email", `Expected` is "email", `Type` is "Header".
-
-Create a IdP and set up the configuration. you can follow [Okta Configuration](https://docs.datawiza.com/idp/okta.html)
-
-Copy the example.docker-compose.yml and rename it as docker-compose.yml. Replace the provisioning key and secret.
-
-Run the following command to start Access Broker and Wordpress
-
-```sh
-docker-compose up -d
-```
-
-After installing the WordPress, you need to input private secret in `Setting` -> `Proxy Auth Plugin`.
+After installing the Proxy Auth Plugin, you need to input provisioning secrect in Step 1 as the private secret in `Setting` -> `Proxy Auth Plugin`.
