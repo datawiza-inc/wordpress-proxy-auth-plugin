@@ -1,0 +1,15 @@
+{
+    "name": "datawiza/wp-signin-widget",
+    "description": "Replaces the WordPress login screen with the Reverse Proxy Auth Widget",
+    "type": "project",
+    "require": {
+        "monolog/monolog": "^2.2",
+        "firebase/php-jwt": "^5.2"
+    },
+    "authors": [
+        {
+            "name": "Datawiza",
+            "email": "info@datawiza.com"
+        }
+    ]
+}
