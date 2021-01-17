@@ -32,4 +32,4 @@ Step 1. When creating the deployment, take a note of the provisioning key and se
 Step 2. Under Attributes tab and add add a new attribute: For Okta, `Field` is "email", `Expected` is "email", `Type` is "Header".
 
 
-After installing the Proxy Authn Plugin, you need to input provisioning secrect in Step 1 as the private secret in `Setting` -> `Proxy Auth Plugin`.
+After installing the Proxy Auth Plugin, you need to input provisioning secrect in Step 1 as the private secret in `Setting` -> `Proxy Auth Plugin`.
