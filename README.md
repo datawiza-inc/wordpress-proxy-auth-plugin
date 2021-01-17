@@ -25,7 +25,7 @@ In `Setting` -> `Datawiza Proxy Auth`, you need to input a private secret which 
 
 The plugin works with any reverse proxy as long as the proxy can pass the correct JWT token in the HTTP header to the plugin. Here is the step by step instruction if you are using Datawiza Access Broker.
 
-Signup or login in [Datawiza Management Console](https://console.datawiza.com). Follow the [docs] (https://docs.datawiza.com) to create a deployment, IdP, and an application.
+Signup or login in [Datawiza Management Console](https://console.datawiza.com). Follow the [docs](https://docs.datawiza.com) to create a deployment, IdP, and an application.
 
 Step 1. When creating the deployment, take a note of the provisioning key and secret.
 
