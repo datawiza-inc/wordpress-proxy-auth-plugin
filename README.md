@@ -29,7 +29,7 @@ In `Setting` -> `Datawiza Proxy Auth`, you need to input a private secret which 
 
 * **If the enabled Proxy Auth Plugin cannot retrieve the expected JWT in the HTTP header, the plugin will not work. The authentication will use the default authentication of wordpress and you will see an error banner on top of the wordpress pages.**
 
-## JWT
+## Generate the JWT required by the plugin 
 
 If you are using openresty/lua-nginx-module, here is the code sample to generate the JWT required by the plugin:
 ```
