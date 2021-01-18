@@ -29,10 +29,11 @@ In `Setting` -> `Datawiza Proxy Auth`, you need to input a private secret which 
 
 * **If the enabled Proxy Auth Plugin cannot retrieve the expected JWT in the HTTP header, the plugin will not work. The authentication will use the default authentication of wordpress and you will see an error banner on top of the wordpress pages.**
 
-## Generate the JWT required by the plugin 
+## Generate the JWT required by the plugin  
 
 If you are using openresty/lua-nginx-module, here is the code sample to generate the JWT required by the plugin:
-```
+
+```lua
 jwt = require("resty.jwt")
 local jwt_token = jwt:sign(
     "jwt_secret",
@@ -42,4 +43,5 @@ local jwt_token = jwt:sign(
     })
 ngx.req.set_header('DW-TOKEN', jwt_token)
 ```
+
 The `jwt_secret` above should be the same private secret input in `Setting` -> `Datawiza Proxy Auth`. The `role` in `payload` is optional. If it's not specified, the default role is `subscriber`. For more details about `lua-resty-jwt`, you can visit [here](https://github.com/SkyLothar/lua-resty-jwt).
