@@ -31,44 +31,15 @@ In `Setting` -> `Datawiza Proxy Auth`, you need to input a private secret which 
 
 ## JWT
 
-If you are using openresty/lua-nginx-module, here is the code sample to generate the JWT required by the plugin:  
-
+If you are using openresty/lua-nginx-module, here is the code sample to generate the JWT required by the plugin:
 ```
-# nginx.conf:
-
-lua_package_path "/path/to/lua-resty-jwt/lib/?.lua;;";
-
-server {
-        default_type text/plain;
-        location = /sign {
-            content_by_lua '
-                local jwt = require "resty.jwt"
-
-                local jwt_token = jwt:sign(
-                    "jwt_secret",
-                    {
-                        header={typ="JWT", alg="HS256"},
-                        payload={foo="bar"}
-                    }
-                )
-                ngx.req.set_header('DW-TOKEN', jwt_token)
-            ';
-        }
-    }
+jwt = require("resty.jwt")
+local jwt_token = jwt:sign(
+    "jwt_secret",
+    {
+    header={typ="JWT", alg="HS256"},
+    payload={email="admin@yourwebsite.com", role="administrator"}
+    })
+ngx.req.set_header('DW-TOKEN', jwt_token)
 ```
-
-The `jwt_secret` above should be the private secret inputed in `Setting` -> `Datawiza Proxy Auth`.  
-For more details about `lua-resty-jwt`, you can visit [here](https://github.com/SkyLothar/lua-resty-jwt).  
-And [here](https://en.wikipedia.org/wiki/JSON_Web_Token#Implementations) is about other languages and frameworks' implementations.  
-
-## Step by step instruction to use the plugin with the Datawiza Access Broker
-
-The plugin works with any reverse proxy as long as the proxy can pass the correct JWT in the HTTP header to the plugin. Here is the step by step instruction if you are using Datawiza Access Broker.
-
-Signup or login in [Datawiza Management Console](https://console.datawiza.com). Follow the [docs](https://docs.datawiza.com) to create a deployment, IdP, and an application.
-
-Step 1. When creating the deployment, take a note of the provisioning key and secret.
-
-Step 2. Under Attributes tab and add add a new attribute: For Okta, `Field` is "email", `Expected` is "email", `Type` is "Header".
-
-After installing the Proxy Auth Plugin, you need to input provisioning secrect in Step 1 as the private secret in `Setting` -> `Proxy Auth Plugin`.
+The `jwt_secret` above should be the same private secret input in `Setting` -> `Datawiza Proxy Auth`. The `role` in `payload` is optional. If it's not specified, the default role is `subscriber`. For more details about `lua-resty-jwt`, you can visit [here](https://github.com/SkyLothar/lua-resty-jwt).
