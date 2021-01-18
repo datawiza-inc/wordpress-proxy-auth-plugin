@@ -31,8 +31,36 @@ In `Setting` -> `Datawiza Proxy Auth`, you need to input a private secret which 
 
 ## JWT
 
-If you are using openresty/lua-nginx-module, here is the [code sample](https://github.com/SkyLothar/lua-resty-jwt#synopsis) to generate the JWT token required by the plugin.  
-And [here](https://en.wikipedia.org/wiki/JSON_Web_Token#Implementations) is about other languages and frameworks' implementations.
+If you are using openresty/lua-nginx-module, here is the code sample to generate the JWT required by the plugin:  
+
+```
+# nginx.conf:
+
+lua_package_path "/path/to/lua-resty-jwt/lib/?.lua;;";
+
+server {
+        default_type text/plain;
+        location = /sign {
+            content_by_lua '
+                local cjson = require "cjson"
+                local jwt = require "resty.jwt"
+
+                local jwt_token = jwt:sign(
+                    "jwt_secret",
+                    {
+                        header={typ="JWT", alg="HS256"},
+                        payload={foo="bar"}
+                    }
+                )
+                ngx.req.set_header('DW-TOKEN', jwt_token)
+            ';
+        }
+    }
+```
+
+The `jwt_secret` above should be the private secret inputed in `Setting` -> `Datawiza Proxy Auth`.  
+For more details about `lua-resty-jwt`, you can visit [here](https://github.com/SkyLothar/lua-resty-jwt).  
+And [here](https://en.wikipedia.org/wiki/JSON_Web_Token#Implementations) is about other languages and frameworks' implementations.  
 
 ## Step by step instruction to use the plugin with the Datawiza Access Broker
 

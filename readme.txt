@@ -35,6 +35,43 @@ Note that the plugin requires a reverse proxy sitting in front of the WordPress 
 
 In `Setting` -> `Datawiza Proxy Auth`, you need to input a private secret which is used as a Cryptography Key. Such secret is shared among the plugin and the reverse proxy which is responsible for passing the JWT to the plugin. The Signing Algorithm for the JWT is `HS256`.
 
+**!!! NOTES !!!**
+
+* **If the enabled Proxy Auth Plugin cannot retrieve the expected JWT in the HTTP header, the plugin will not work. The authentication will use the default authentication of wordpress and you will see an error banner on top of the wordpress pages.**
+
+## JWT
+
+If you are using openresty/lua-nginx-module, here is the code sample to generate the JWT required by the plugin:  
+
+```
+# nginx.conf:
+
+lua_package_path "/path/to/lua-resty-jwt/lib/?.lua;;";
+
+server {
+        default_type text/plain;
+        location = /sign {
+            content_by_lua '
+                local cjson = require "cjson"
+                local jwt = require "resty.jwt"
+
+                local jwt_token = jwt:sign(
+                    "jwt_secret",
+                    {
+                        header={typ="JWT", alg="HS256"},
+                        payload={foo="bar"}
+                    }
+                )
+                ngx.req.set_header('DW-TOKEN', jwt_token)
+            ';
+        }
+    }
+```
+
+The `jwt_secret` above should be the private secret inputed in `Setting` -> `Datawiza Proxy Auth`.  
+For more details about `lua-resty-jwt`, you can visit [here](https://github.com/SkyLothar/lua-resty-jwt).  
+And [here](https://en.wikipedia.org/wiki/JSON_Web_Token#Implementations) is about other languages and frameworks' implementations.  
+
 == Installation ==
 1. Activate the plugin through the \"Plugins\" menu in WordPress.
 2. Input private secret in Settings -> Datawiza Proxy Auth Plugin.
