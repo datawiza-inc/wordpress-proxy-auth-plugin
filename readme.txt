@@ -52,7 +52,6 @@ server {
         default_type text/plain;
         location = /sign {
             content_by_lua '
-                local cjson = require "cjson"
                 local jwt = require "resty.jwt"
 
                 local jwt_token = jwt:sign(
