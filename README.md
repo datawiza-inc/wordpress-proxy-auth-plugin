@@ -6,7 +6,7 @@ The Proxy Auth Plugin helps developers/DevOps/admins easily implement authentica
 
 This could be employed to achieve SSO (OAUTH/OIDC and SAML) to a Cloud Identity Provider (e.g., Azure Active Directory, Okta, Auth0) by using an Identity-Aware Proxy, e.g., [Datawiza Access Broker](https://www.datawiza.com/access-broker) and [Google IAP](https://cloud.google.com/iap).
 
-Note that the plugin requires a reverse proxy sitting in front of the WordPress site. The reverse proxy performs authentication, and passes the user name and role in a JWT to the plugin via a HTTP header.
+Note that the plugin requires a reverse proxy sitting in front of the WordPress site. The reverse proxy performs authentication, and passes the user name and role in a JWT to the plugin via a HTTP header called `DW-TOKEN`.
 
 ## How it works
 
