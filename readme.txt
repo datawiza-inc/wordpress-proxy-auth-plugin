@@ -69,6 +69,11 @@ The `jwt_secret` above should be the same private secret input in `Setting` -> `
 == Screenshots ==
 
 == Changelog ==
+= 1.1.2 =
+* Keep the user's role in WordPress in sync with the role value in JWT.
+* Add close button to notification bar.
+* Add invalid jwt error message.
+
 = 1.1.1 =
 * Retrieves user info from encrypted DW-TOKEN instead of X-User.
 
