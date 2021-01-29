@@ -59,7 +59,7 @@ class DatawizaAdmin
     add_settings_field(
         'datawiza-private-secret',
         'DW Token Private Secret',
-        function() { $this->optionsPageTextInputAction('datawiza-private-secret', 'text', 'Copy paste your jwt token\'s private secret here. ', 'It is used for verifying the token. If you are using Datawiza Access Broker, the secret is Provisioning Secret which is the same with the one when you setting up Access Broker'); },
+        function() { $this->optionsPageTextInputAction('datawiza-private-secret', 'text', 'Copy paste your JWT\'s private secret here. ', 'It is used for verifying the token. If you are using Datawiza Access Broker, the secret is Provisioning Secret which is the same with the one when you setting up Access Broker'); },
         'datawiza-sign-in-widget',
         'datawiza-sign-in-widget-options-section'
     );
